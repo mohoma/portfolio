@@ -77,7 +77,10 @@ const HomePage = () => {
 
             <div className="mt-6 flex flex-col">
                 <HeadTitle title="Education"/>
-                <WorkCard title="Shahid Beheshti University (SBU) / Tehran-Iran" date="2012 - 2016"/>
+                <WorkCard
+                    title="Shahid Beheshti University (SBU) / Tehran-Iran"
+                    link="https://en.sbu.ac.ir"
+                    date="2012 - 2016"/>
                 <p>Bachelor's Degree in Software Engineering</p>
             </div>
 

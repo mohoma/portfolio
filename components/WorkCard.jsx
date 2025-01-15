@@ -6,7 +6,7 @@ const WorkCard = ({link, title, remote, date, introduce, description, tech}) => 
             <div className="w-full items-center flex flex-row justify-between mt-4">
                 <div className="flex flex-row items-center gap-2">
                     <h2 className={`flex font-semibold hover:${link ? 'underline' : 'none'} text-[17px] font-semibold`}>
-                        <a href={link}>{title}</a>
+                        <a href={link} target="_blank" rel="noopener noreferrer">{title}</a>
                     </h2>
                     <div
                         className={`py-[3px] px-[4px] font-semibold rounded-[7px] bg-${remote ? "[#f3f4f6]" : 'white'}`}>
