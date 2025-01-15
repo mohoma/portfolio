@@ -34,7 +34,7 @@ export const experiences = [
     {
         title: "SnapCyte | AI Cell Analysis",
         remote: true,
-        link: "https://https://snapcyte.com",
+        link: "https://snapcyte.com",
         date: "01/2022 - Now",
         introduce: "Lead Software Engineer",
         description: [

@@ -1,0 +1,60 @@
+name: Build and Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout source repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build the project
+        run: pnpm build
+
+      - name: Commit and push to destination repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          # Get the latest commit message from the source repo
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          
+          # Clone the destination repository
+          git clone --branch main https://github.com/mohoma/mohoma.github.io.git destination
+          
+          # Copy the 'out' folder to the destination repo
+          rm -rf destination/*
+          cp -r out/* destination/
+          
+          # Commit the changes to the destination repo
+          cd destination
+          touch .nojekyll
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "$COMMIT_MSG"
+          git push https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/mohoma/mohoma.github.io.git main
