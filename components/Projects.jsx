@@ -3,7 +3,7 @@ import Github from "../components/Github";
 
 const Project = ({title, description, github, skills, link}) => {
     return (
-        <div className="flex flex-col gap-1 projects rounded-lg p-3 max-w-80">
+        <div className="flex flex-col gap-1 projects rounded-lg p-3 max-w-80 shadow-lg shadow-neutral-200">
             <div className="flex justify-between">
                 <h3 className="flex flex-row gap-1 items-center font-semibold">
                     <a target="_blank" className={`flex hover:${link ? 'underline' : 'none'}`} href={link}>
