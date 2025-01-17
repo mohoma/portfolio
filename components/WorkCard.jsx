@@ -3,7 +3,7 @@ import React from "react";
 const WorkCard = ({link, title, remote, date, introduce, description, tech}) => {
     return (
         <>
-            <div className="w-full items-center flex flex-row justify-between mt-4">
+            <div className="w-full lg:items-center items-start flex lg:flex-row flex-col justify-between mt-4">
                 <div className="flex flex-row items-center gap-2">
                     <h2 className={`flex font-semibold hover:${link ? 'underline' : 'none'} text-[17px] font-semibold`}>
                         <a href={link} target="_blank" rel="noopener noreferrer">{title}</a>
